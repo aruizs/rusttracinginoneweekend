@@ -3,45 +3,11 @@ extern crate image;
 use std::fs::File;
 use std::path::Path;
 
-struct Vec3<T> {
-    a: T,
-    b: T,
-    c: T
-}
-
-impl<T> Vec3<T> {
-    fn new(x: T, y: T, z: T) -> Vec3<T> {
-        Vec3 { a: x, b: y, c: z}
-    }
-
-    fn x(&self) -> &T {
-        &self.a
-    }
-
-    fn y(&self) -> &T {
-        &self.b
-    }
-
-    fn z(&self) -> &T {
-        &self.c
-    }
-
-    fn r(&self) -> &T {
-        &self.a
-    }
-
-    fn g(&self) -> &T {
-        &self.b
-    }
-
-    fn b(&self) -> &T {
-        &self.c
-    }
-}
+mod vec3;
+use vec3::Vec3;
 
 fn main() -> std::io::Result<()>
 {
-    let v = Vec3 {a: 1, b: 2, c: 3};
 	const NX : usize = 200;
 	const NY : usize = 100;
     let mut pixels : Vec<u8> = vec![0; NX * NY * 3];
