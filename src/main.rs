@@ -6,6 +6,9 @@ use std::path::Path;
 mod vec3;
 use vec3::Vec3;
 
+mod ray;
+use ray::Ray;
+
 fn main() -> std::io::Result<()>
 {
 	const NX : usize = 200;
