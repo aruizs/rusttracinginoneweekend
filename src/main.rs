@@ -8,6 +8,11 @@ use vec3::Vec3;
 
 mod ray;
 use ray::Ray;
+fn color(r: &Ray) -> Vec3 {
+    let unit_direction = Vec3::unit_vector(r.direction());
+    let t = 0.5 * (unit_direction.y() + 1.0);
+    Vec3::new(1.0, 1.0, 1.0) * (1.0 - t) + Vec3::new(0.5, 0.7, 1.0) * t 
+}
 
 fn main() -> std::io::Result<()>
 {
@@ -18,15 +23,18 @@ fn main() -> std::io::Result<()>
     let horizontal = Vec3::new(4.0, 0.0, 0.0);
     let vertical = Vec3::new(0.0, 2.0, 0.0);
     let origin = Vec3::new(0.0, 0.0, 0.0);
-	for i in 0..NX {
-		for j in 0..NY {
-            let col = Vec3::new(i as f32 / NX as f32, j as f32 / NY as f32, 0.2);
+	for j in 0..NY {
+		for i in 0..NX {
+            let u = i as f32 / NX as f32;
+            let v = j as f32 / NY as f32;
+            let r = Ray::new(&origin, &(lower_left_corner + horizontal * u + vertical * v));
+            let col = color(&r);
             let ir = (255.99*col.r()) as u8;
             let ig = (255.99*col.g()) as u8;
             let ib = (255.99*col.b()) as u8;
-            pixels[i*3 + j*NX*3] = ir;
-            pixels[1 + i*3 + j*NX*3] = ig;
-            pixels[2 + i*3 + j*NX*3] = ib;
+            pixels[i*3 + (NY-j-1)*NX*3] = ir;
+            pixels[1 + i*3 + (NY-j-1)*NX*3] = ig;
+            pixels[2 + i*3 + (NY-j-1)*NX*3] = ib;
 		}
 	}
 

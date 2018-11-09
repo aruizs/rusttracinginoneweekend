@@ -6,6 +6,11 @@ pub struct Ray {
 }
 
 impl Ray {
+
+	pub fn new(a_in: &Vec3, b_in: &Vec3) -> Ray 	{
+		Ray { a: a_in.clone(), b: b_in.clone() }
+	}
+
 	pub fn origin(&self) -> &Vec3 {
         &self.a
     }

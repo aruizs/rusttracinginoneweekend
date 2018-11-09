@@ -1,5 +1,6 @@
 use std::ops::{Add, Mul, Div};
 
+#[derive(Copy, Clone, Debug)]
 pub struct Vec3 {
     pub a: f32,
     pub b: f32,
@@ -22,10 +23,10 @@ impl Mul<f32> for Vec3 {
     }
 }
 
-impl Div<f32> for &Vec3 {
+impl Div<f32> for Vec3 {
     type Output = Vec3;
 
-    fn div(&self, factor: f32) -> Vec3 {
+    fn div(self, factor: f32) -> Vec3 {
         Vec3 { a: self.a / factor, b: self.b / factor, c: self.c / factor}
     }
 }
