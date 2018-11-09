@@ -14,6 +14,10 @@ fn main() -> std::io::Result<()>
 	const NX : usize = 200;
 	const NY : usize = 100;
     let mut pixels : Vec<u8> = vec![0; NX * NY * 3];
+    let lower_left_corner = Vec3::new(-2.0, -1.0, -1.0);
+    let horizontal = Vec3::new(4.0, 0.0, 0.0);
+    let vertical = Vec3::new(0.0, 2.0, 0.0);
+    let origin = Vec3::new(0.0, 0.0, 0.0);
 	for i in 0..NX {
 		for j in 0..NY {
             let col = Vec3::new(i as f32 / NX as f32, j as f32 / NY as f32, 0.2);
