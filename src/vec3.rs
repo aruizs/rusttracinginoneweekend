@@ -1,4 +1,4 @@
-use std::ops::{Add, Mul, Div};
+use std::ops::{Add, Mul, Div, Sub};
 
 #[derive(Copy, Clone, Debug)]
 pub struct Vec3 {
@@ -12,6 +12,14 @@ impl Add for Vec3 {
 
     fn add(self, other: Vec3) -> Vec3 {
         Vec3 { a: self.a + other.a, b: self.b + other.b, c: self.c + other.c}
+    }
+}
+
+impl<'a, 'b> Sub<&'b Vec3> for &'a Vec3 {
+    type Output = Vec3;
+
+    fn sub(self, other: &'b Vec3) -> Vec3 {
+        Vec3 { a: self.a - other.a, b: self.b - other.b, c: self.c - other.c}
     }
 }
 
@@ -68,4 +76,9 @@ impl Vec3 {
         let vector = v.clone();
         vector / vector.length()
     }
+
+    pub fn dot(v1: &Vec3, v2: &Vec3) -> f32 {
+        v1.a*v2.a + v1.b*v2.b + v1.c*v2.c 
+    }
+
 }
