@@ -23,6 +23,14 @@ impl<'a, 'b> Sub<&'b Vec3> for &'a Vec3 {
     }
 }
 
+impl Sub for Vec3 {
+    type Output = Vec3;
+
+    fn sub(self, other: Vec3) -> Vec3 {
+        Vec3 { a: self.a - other.a, b: self.b - other.b, c: self.c - other.c}
+    }
+}
+
 impl Mul<f32> for Vec3 {
     type Output = Vec3;
 
